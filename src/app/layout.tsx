@@ -3,18 +3,17 @@ import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 import { createClient } from "@/prismicio";
 import * as prismic from "@prismicio/client";
-
-// import Header from "@/components/header/header";
+import Header from "@/components/header/header";
+import { Footer } from "@/components/footer/footer";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
 
-  const page = await client.getSingle("settings");
+  const settings = await client.getSingle("settings");
 
   return {
-    title: prismic.asText(page.data.site_title),
-    description: page.data.meta_description || "Besta Deild description fallback",
-    navigation: page.data.navigation || [],
+    title: prismic.asText(settings.data.site_title),
+    navigation: settings.data.navigation || [],
   } as Metadata;
 }
 
@@ -26,9 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <header>Header!</header>
+        <Header />
         {children}
-        <footer>Footer!</footer>
+        <Footer />
         </body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>

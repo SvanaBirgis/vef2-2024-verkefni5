@@ -260,17 +260,6 @@ interface SettingsDocumentData {
   site_title: prismic.TitleField;
 
   /**
-   * Meta Description field in *Settings*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: settings.meta_description
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_description: prismic.KeyTextField;
-
-  /**
    * Navigation field in *Settings*
    *
    * - **Field Type**: Group

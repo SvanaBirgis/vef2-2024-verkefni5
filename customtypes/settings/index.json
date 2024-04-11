@@ -15,13 +15,6 @@
           "single": "heading3"
         }
       },
-      "meta_description": {
-        "type": "Text",
-        "config": {
-          "label": "Meta Description",
-          "placeholder": ""
-        }
-      },
       "navigation": {
         "type": "Group",
         "config": {
