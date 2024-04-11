@@ -78,6 +78,26 @@ export type FrontpageDocument<Lang extends string = string> =
  */
 export interface MenuDocumentDataNavigationItem {
   /**
+   * TeamName field in *Menu → Navigation*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.navigation[].teamname
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  teamname: prismic.KeyTextField;
+
+  /**
+   * TeamLogo field in *Menu → Navigation*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.navigation[].teamlogo
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  teamlogo: prismic.ImageField<never>;
+
+  /**
    * Link field in *Menu → Navigation*
    *
    * - **Field Type**: Content Relationship
@@ -92,6 +112,17 @@ export interface MenuDocumentDataNavigationItem {
  * Content for Menu documents
  */
 interface MenuDocumentData {
+  /**
+   * Title field in *Menu*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
   /**
    * Navigation field in *Menu*
    *
@@ -114,7 +145,7 @@ interface MenuDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type MenuDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<Simplify<MenuDocumentData>, "menu", Lang>;
+  prismic.PrismicDocumentWithUID<Simplify<MenuDocumentData>, "menu", Lang>;
 
 type PageDocumentDataSlicesSlice = CallToActionSlice | RichTextSlice;
 
@@ -187,6 +218,85 @@ interface PageDocumentData {
  */
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
+
+/**
+ * Item in *Settings → Navigation*
+ */
+export interface SettingsDocumentDataNavigationItem {
+  /**
+   * Label field in *Settings → Navigation*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Label for the link
+   * - **API ID Path**: settings.navigation[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Link field in *Settings → Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.navigation[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * Content for Settings documents
+ */
+interface SettingsDocumentData {
+  /**
+   * Site Title field in *Settings*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: Global title of the site
+   * - **API ID Path**: settings.site_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  site_title: prismic.TitleField;
+
+  /**
+   * Meta Description field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.meta_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Navigation field in *Settings*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.navigation[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  navigation: prismic.GroupField<Simplify<SettingsDocumentDataNavigationItem>>;
+}
+
+/**
+ * Settings document from Prismic
+ *
+ * - **API ID**: `settings`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SettingsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<SettingsDocumentData>,
+    "settings",
+    Lang
+  >;
 
 type TeamsDocumentDataSlicesSlice =
   | HeroSlice
@@ -289,6 +399,7 @@ export type AllDocumentTypes =
   | FrontpageDocument
   | MenuDocument
   | PageDocument
+  | SettingsDocument
   | TeamsDocument;
 
 /**
@@ -955,6 +1066,9 @@ declare module "@prismicio/client" {
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      SettingsDocument,
+      SettingsDocumentData,
+      SettingsDocumentDataNavigationItem,
       TeamsDocument,
       TeamsDocumentData,
       TeamsDocumentDataSlicesSlice,
