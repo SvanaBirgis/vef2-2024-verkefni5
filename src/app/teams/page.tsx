@@ -20,16 +20,17 @@ export default async function Page({ params }: { params: Params }) {
         <PrismicText field={page.data.title} />
       </div>
       <div className={styles.grid}>
-       
-      {page.data.navigation.map((item, index) => (
-        <div className={styles.navigation} key={index}>
-          <PrismicNextLink field={item.link}>{item.teamname}</PrismicNextLink>
-          <div className={styles.teamlogo}>
-            <PrismicNextImage field={item.teamlogo} />
+        {page.data.navigation.map((item, index) => (
+          <div className={styles.navigation} key={index}>
+            <PrismicNextLink className={styles.linkContainer} field={item.link}>
+              {item.teamname}
+            </PrismicNextLink>
+            <div className={styles.teamlogo}>
+              <PrismicNextImage field={item.teamlogo} />
+            </div>
           </div>
-        </div>
-      ))}
-       </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,16 +1,10 @@
-// footer.module.scss
-
 .footer {
     padding: 1rem 2rem;
     text-align: center;
     bottom: 0;
     width: 100%;
-    background-color: #f3f7f9;
+    background-color: #f0f0f0;
 
-
-
-  
-    // Responsive design
     @media (max-width: 768px) {
       padding: 1rem;
     }
@@ -21,9 +15,8 @@
     margin: 0 auto;
     padding: 1rem 0;
   
-    // For the text coming from PrismicText or other elements
     p, a, span {
-      color: inherit; // Ensures that the text color matches the footer's color scheme
+      color: inherit; 
       font-size: 1rem;
     }
   }

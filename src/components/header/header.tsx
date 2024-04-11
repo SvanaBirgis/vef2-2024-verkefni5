@@ -14,14 +14,17 @@ export default async function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.content}>
-        <Link href="/">
+        <Link className={styles.titleContainer} href="/">
           <PrismicText field={settings.data.site_title} />
         </Link>
         <nav className={styles.navigation}>
           <ul className={styles.list}>
             {settings.data.navigation.map((item, index) => (
-              <li key={item.label}>
-                <PrismicNextLink field={item.link}>
+              <li className={styles.linkContainer} key={item.label}>
+                <PrismicNextLink
+                  className={styles.labelContainer}
+                  field={item.link}
+                >
                   {item.label}
                 </PrismicNextLink>
               </li>

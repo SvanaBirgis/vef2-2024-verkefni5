@@ -6,16 +6,14 @@ type Params = { uid: string };
 
 export default async function Team({ params }: { params: Params }) {
   const client = createClient();
-
   const team = await client.getByUID("teams", params.uid);
-  console.log(team, "lið");
 
   return (
     <div className={styles.container}>
       <div className={styles.titleContainer}>
         <div className={styles.title}>{team.data.title}</div>
         <div className={styles.teamlogo}>
-        <PrismicImage field={team.data.teamlogo} />
+          <PrismicImage className={styles.imageContainer} field={team.data.teamlogo} />
         </div>
       </div>
       <div className={styles.description}>
