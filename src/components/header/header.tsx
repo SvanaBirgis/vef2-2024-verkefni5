@@ -12,9 +12,7 @@ export default async function Header() {
   const settings = await client.getSingle("settings");
 
   return (
-    <Bounded as="header"
-    className={styles.header}>
-
+    <header className={styles.header}>
       <div className={styles.content}>
         <Link href="/">
           <PrismicText field={settings.data.site_title} />
@@ -31,6 +29,6 @@ export default async function Header() {
           </ul>
         </nav>
       </div>
-    </Bounded>
+    </header>
   );
 }
