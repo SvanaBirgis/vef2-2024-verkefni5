@@ -1,5 +1,5 @@
 import { createClient } from "@/prismicio";
-import { PrismicImage, PrismicText } from "@prismicio/react";
+import { PrismicImage, PrismicRichText } from "@prismicio/react";
 import styles from "./page.module.scss";
 
 type Params = { uid: string };
@@ -19,7 +19,7 @@ export default async function Team({ params }: { params: Params }) {
         </div>
       </div>
       <div className={styles.description}>
-        <PrismicText field={team.data.description} />
+        <PrismicRichText field={team.data.description} />
       </div>
     </div>
   );

@@ -74,7 +74,7 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
           
           .es-call-to-action {
             font-family: system-ui, sans-serif;
-            background-color: #fff;
+            background-color: #f0f0f0;
             color: #333;
           }
           

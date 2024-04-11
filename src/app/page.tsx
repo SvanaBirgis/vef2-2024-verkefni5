@@ -5,6 +5,8 @@ import * as prismic from "@prismicio/client";
 
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
+import styles from "@/app/page.module.scss";
+import { CallToActionProps } from "@/slices/CallToAction";
 
 
 export default async function Index() {
@@ -12,5 +14,9 @@ export default async function Index() {
   const client = createClient();
   const home = await client.getByUID("page", "home");
 
-  return <SliceZone slices={home.data.slices} components={components} />;
+  return (
+    <div className={styles.container}>
+      <SliceZone slices={home.data.slices} components={components} />
+    </div>
+  );
 }
