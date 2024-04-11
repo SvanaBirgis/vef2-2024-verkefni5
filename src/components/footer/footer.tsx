@@ -1,6 +1,6 @@
 import { createClient } from "@/prismicio";
 import { PrismicText } from "@prismicio/react";
-import styles from "./footer.module.css";
+import styles from "./footer.module.scss";
 import Bounded from "../bounded/bounded";
 
 

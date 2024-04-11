@@ -333,41 +333,6 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
-/**
- * Item in *Team → Navigation*
- */
-export interface TeamsDocumentDataNavigationItem {
-  /**
-   * TeamName field in *Team → Navigation*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: teams.navigation[].teamname
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  teamname: prismic.KeyTextField;
-
-  /**
-   * TeamLogo field in *Team → Navigation*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: teams.navigation[].teamlogo
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  teamlogo: prismic.ImageField<never>;
-
-  /**
-   * Link field in *Team → Navigation*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: teams.navigation[].link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  link: prismic.LinkField;
-}
-
 type TeamsDocumentDataSlicesSlice =
   | HeroSlice
   | CallToActionSlice
@@ -389,15 +354,26 @@ interface TeamsDocumentData {
   title: prismic.KeyTextField;
 
   /**
-   * Navigation field in *Team*
+   * TeamLogo field in *Team*
    *
-   * - **Field Type**: Group
+   * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: teams.navigation[]
+   * - **API ID Path**: teams.teamlogo
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/field#image
    */
-  navigation: prismic.GroupField<Simplify<TeamsDocumentDataNavigationItem>>;
+  teamlogo: prismic.ImageField<never>;
+
+  /**
+   * Description field in *Team*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: teams.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
 
   /**
    * Slice Zone field in *Team*
@@ -1131,7 +1107,6 @@ declare module "@prismicio/client" {
       SettingsDocumentDataNavigationItem,
       TeamsDocument,
       TeamsDocumentData,
-      TeamsDocumentDataNavigationItem,
       TeamsDocumentDataSlicesSlice,
       AllDocumentTypes,
       AlternateGridSlice,

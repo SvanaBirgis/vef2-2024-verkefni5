@@ -19,36 +19,21 @@
           "placeholder": ""
         }
       },
-      "navigation": {
-        "type": "Group",
+      "teamlogo": {
+        "type": "Image",
         "config": {
-          "label": "Navigation",
-          "repeat": true,
-          "fields": {
-            "teamname": {
-              "type": "Text",
-              "config": {
-                "label": "TeamName",
-                "placeholder": ""
-              }
-            },
-            "teamlogo": {
-              "type": "Image",
-              "config": {
-                "label": "TeamLogo",
-                "constraint": {},
-                "thumbnails": []
-              }
-            },
-            "link": {
-              "type": "Link",
-              "config": {
-                "label": "Link",
-                "placeholder": "",
-                "select": null
-              }
-            }
-          }
+          "label": "TeamLogo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Description",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },
       "slices": {

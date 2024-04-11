@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import styles from "./header.module.css";
+import styles from "./header.module.scss";
 import { createClient } from "@/prismicio";
 import { PrismicText } from "@prismicio/react";
 import { PrismicNextLink } from "@prismicio/next";
