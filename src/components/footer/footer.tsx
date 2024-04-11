@@ -1,6 +1,7 @@
 import { createClient } from "@/prismicio";
 import { PrismicText } from "@prismicio/react";
 import styles from "./footer.module.css";
+import Bounded from "../bounded/bounded";
 
 
 export async function Footer() {
@@ -8,11 +9,11 @@ export async function Footer() {
     const settings = await client.getSingle("settings");
   
     return (
-      <footer className={styles.footer}>
+      <Bounded as="footer" className={styles.footer}>
         <div className={styles.content}>
           <PrismicText field={settings.data.site_title} /> 
-          <div>© 2024 Svana Björg Birgisdóttir.</div>
+          <p className={styles.name}>© 2024 Svana Björg Birgisdóttir.</p>
         </div>
-      </footer>
+      </Bounded>
     );
   }

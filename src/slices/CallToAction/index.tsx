@@ -1,3 +1,4 @@
+import Bounded from "@/components/bounded/bounded";
 import { type Content, isFilled } from "@prismicio/client";
 import { PrismicNextLink, PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
@@ -8,7 +9,7 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
   const alignment = slice.variation === "alignLeft" ? "left" : "center";
 
   return (
-    <section
+    <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className="es-bounded es-call-to-action"
@@ -124,7 +125,7 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
           }
         `}
       </style>
-    </section>
+    </Bounded>
   );
 };
 

@@ -147,6 +147,41 @@ interface MenuDocumentData {
 export type MenuDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<MenuDocumentData>, "menu", Lang>;
 
+/**
+ * Item in *Page → Navigation*
+ */
+export interface PageDocumentDataNavigationItem {
+  /**
+   * TeamName field in *Page → Navigation*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.navigation[].teamname
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  teamname: prismic.KeyTextField;
+
+  /**
+   * Link field in *Page → Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.navigation[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * TeamLogo field in *Page → Navigation*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.navigation[].teamlogo
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  teamlogo: prismic.ImageField<never>;
+}
+
 type PageDocumentDataSlicesSlice = CallToActionSlice | RichTextSlice;
 
 /**
@@ -163,6 +198,17 @@ interface PageDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.TitleField;
+
+  /**
+   * Navigation field in *Page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.navigation[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  navigation: prismic.GroupField<Simplify<PageDocumentDataNavigationItem>>;
 
   /**
    * Slice Zone field in *Page*
@@ -287,6 +333,41 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *Team → Navigation*
+ */
+export interface TeamsDocumentDataNavigationItem {
+  /**
+   * TeamName field in *Team → Navigation*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: teams.navigation[].teamname
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  teamname: prismic.KeyTextField;
+
+  /**
+   * TeamLogo field in *Team → Navigation*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: teams.navigation[].teamlogo
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  teamlogo: prismic.ImageField<never>;
+
+  /**
+   * Link field in *Team → Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: teams.navigation[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
 type TeamsDocumentDataSlicesSlice =
   | HeroSlice
   | CallToActionSlice
@@ -308,26 +389,15 @@ interface TeamsDocumentData {
   title: prismic.KeyTextField;
 
   /**
-   * Description field in *Team*
+   * Navigation field in *Team*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: teams.description
+   * - **API ID Path**: teams.navigation[]
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/field#group
    */
-  description: prismic.RichTextField;
-
-  /**
-   * Logo field in *Team*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: teams.logo
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  logo: prismic.ImageField<never>;
+  navigation: prismic.GroupField<Simplify<TeamsDocumentDataNavigationItem>>;
 
   /**
    * Slice Zone field in *Team*
@@ -1054,12 +1124,14 @@ declare module "@prismicio/client" {
       MenuDocumentDataNavigationItem,
       PageDocument,
       PageDocumentData,
+      PageDocumentDataNavigationItem,
       PageDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
       TeamsDocument,
       TeamsDocumentData,
+      TeamsDocumentDataNavigationItem,
       TeamsDocumentDataSlicesSlice,
       AllDocumentTypes,
       AlternateGridSlice,

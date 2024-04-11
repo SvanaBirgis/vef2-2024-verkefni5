@@ -22,6 +22,38 @@
           "single": "heading1"
         }
       },
+      "navigation": {
+        "type": "Group",
+        "config": {
+          "label": "Navigation",
+          "repeat": true,
+          "fields": {
+            "teamname": {
+              "type": "Text",
+              "config": {
+                "label": "TeamName",
+                "placeholder": ""
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null
+              }
+            },
+            "teamlogo": {
+              "type": "Image",
+              "config": {
+                "label": "TeamLogo",
+                "constraint": {},
+                "thumbnails": []
+              }
+            }
+          }
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

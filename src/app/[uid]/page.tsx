@@ -6,6 +6,9 @@ import * as prismic from "@prismicio/client";
 
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
+import { PrismicText } from "@prismicio/react";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import { RichTextField } from "@prismicio/client";
 
 type Params = { uid: string };
 
@@ -43,7 +46,19 @@ export default async function Page({ params }: { params: Params }) {
     .getByUID("page", params.uid)
     .catch(() => notFound());
 
-  return <SliceZone slices={page.data.slices} components={components} />;
+  return (
+    <div>
+      <PrismicText field={page.data.title} />
+      {page.data.navigation.map((item, index) => (
+        <div key={index}>
+          <PrismicNextLink field={item.link}>
+                  {item.teamname}
+          </PrismicNextLink>
+          <PrismicNextImage field={item.teamlogo} />
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export async function generateStaticParams() {
