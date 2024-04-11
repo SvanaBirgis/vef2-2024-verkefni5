@@ -4,149 +4,6 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type FrontpageDocumentDataSlicesSlice =
-  | HeroSlice
-  | CallToActionSlice
-  | AlternateGridSlice
-  | CustomerLogosSlice;
-
-/**
- * Content for FrontPage documents
- */
-interface FrontpageDocumentData {
-  /**
-   * Slice Zone field in *FrontPage*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: frontpage.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<FrontpageDocumentDataSlicesSlice> /**
-   * Meta Description field in *FrontPage*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: frontpage.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *FrontPage*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: frontpage.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>;
-
-  /**
-   * Meta Title field in *FrontPage*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: frontpage.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_title: prismic.KeyTextField;
-}
-
-/**
- * FrontPage document from Prismic
- *
- * - **API ID**: `frontpage`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type FrontpageDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<FrontpageDocumentData>,
-    "frontpage",
-    Lang
-  >;
-
-/**
- * Item in *Menu → Navigation*
- */
-export interface MenuDocumentDataNavigationItem {
-  /**
-   * TeamName field in *Menu → Navigation*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: menu.navigation[].teamname
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  teamname: prismic.KeyTextField;
-
-  /**
-   * TeamLogo field in *Menu → Navigation*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: menu.navigation[].teamlogo
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  teamlogo: prismic.ImageField<never>;
-
-  /**
-   * Link field in *Menu → Navigation*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: menu.navigation[].link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  link: prismic.ContentRelationshipField<"page">;
-}
-
-/**
- * Content for Menu documents
- */
-interface MenuDocumentData {
-  /**
-   * Title field in *Menu*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: menu.title
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  title: prismic.KeyTextField;
-
-  /**
-   * Navigation field in *Menu*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: menu.navigation[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  navigation: prismic.GroupField<Simplify<MenuDocumentDataNavigationItem>>;
-}
-
-/**
- * Menu document from Prismic
- *
- * - **API ID**: `menu`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type MenuDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<Simplify<MenuDocumentData>, "menu", Lang>;
-
 /**
  * Item in *Page → Navigation*
  */
@@ -430,12 +287,7 @@ interface TeamsDocumentData {
 export type TeamsDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<TeamsDocumentData>, "teams", Lang>;
 
-export type AllDocumentTypes =
-  | FrontpageDocument
-  | MenuDocument
-  | PageDocument
-  | SettingsDocument
-  | TeamsDocument;
+export type AllDocumentTypes = PageDocument | SettingsDocument | TeamsDocument;
 
 /**
  * Primary content in *AlternateGrid → Primary*
@@ -1092,12 +944,6 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
-      FrontpageDocument,
-      FrontpageDocumentData,
-      FrontpageDocumentDataSlicesSlice,
-      MenuDocument,
-      MenuDocumentData,
-      MenuDocumentDataNavigationItem,
       PageDocument,
       PageDocumentData,
       PageDocumentDataNavigationItem,
